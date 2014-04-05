@@ -8,9 +8,13 @@ alex_multisite:
     default_branding: foo
     default_locale:   fr_FR
     brandings:
+        _defaults:
+            flag_A: true
+            flag_B: true
         foo:
             en_GB: { host: foo.example.org }
-            fr_FR: { host: foo.example.org, prefix: /fr }
+            fr_FR: { host: foo.example.org, prefix: /fr, flag_A: false }
         bar:
+            _defaults: { flag_B: false }
             fr_FR: { host: bar.example.org }
             de_DE: { host: de.bar.example.org }

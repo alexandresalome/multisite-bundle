@@ -90,4 +90,18 @@ class Branding
 
         return $path;
     }
+
+    /**
+     * Returns value of an option.
+     *
+     * @param string $locale
+     * @param string $name
+     * @param mixed  $default
+     *
+     * @return mixed
+     */
+    public function getOption($locale, $name, $default = null)
+    {
+        return isset($this->localesConfig[$locale][$name]) ? $this->localesConfig[$locale][$name] : $default;
+    }
 }

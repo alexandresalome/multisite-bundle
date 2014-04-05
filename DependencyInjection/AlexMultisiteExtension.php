@@ -39,16 +39,36 @@ class AlexMultisiteExtension extends Extension
      * @param ContainerBuilder $container
      * @param array            $brandings
      */
-    private function addBrandingDefinition(ContainerBuilder $container, array $brandings)
+    private function addBrandingDefinition(ContainerBuilder $container, array $options)
     {
-        $args = array();
-        foreach ($brandings as $name => $locales) {
-            $args[] = new Definition(
+        $brandings = array();
+
+        if (isset($options['_defaults'])) {
+            $globalOptions = $options['_defaults'];
+            unset($options['_defaults']);
+        } else {
+            $globalOptions = array();
+        }
+
+        foreach ($options as $name => $localeOptions) {
+            if (isset($localeOptions['_defaults'])) {
+                $brandingOptions = $localeOptions['_defaults'];
+                unset($localeOptions['_defaults']);
+            } else {
+                $brandingOptions = array();
+            }
+
+            $arg = array();
+            foreach ($localeOptions as $locale => $options) {
+                $arg[$locale] = array_merge($globalOptions, $brandingOptions, $options);
+            }
+
+            $brandings[] = new Definition(
                 'Alex\MultisiteBundle\Branding\Branding',
-                array($name, $locales)
+                array($name, $arg)
             );
         }
 
-        $container->getDefinition('site_context')->replaceArgument(0, $args);
+        $container->getDefinition('site_context')->replaceArgument(0, $brandings);
     }
 }

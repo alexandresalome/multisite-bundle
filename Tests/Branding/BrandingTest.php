@@ -32,6 +32,12 @@ class BrandingTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($branding->getHost('en_GB'));
     }
 
+    public function testGetOption()
+    {
+        $branding = new Branding('foo', array('fr_FR' => array('bar' => 'bar')));
+        $this->assertEquals('bar', $branding->getOption('fr_FR', 'bar'));
+    }
+
     public function testPrefixPath()
     {
         $branding = new Branding('foo', array(

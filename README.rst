@@ -12,8 +12,8 @@ Features
 --------
 
 * Multiple routes for each site
+* Configuration per site
 * *UPCOMING* templates per site
-* *UPCOMING* configuration per site
 
 Installation
 ------------
@@ -56,11 +56,16 @@ Add this section to your *config.yml* file:
         default_branding: branding_A
         default_locale:   fr_FR
         brandings:
+            _defaults:
+                register: true
             branding_A:
                 en_GB: { host: branding-a.com }
                 fr_FR: { host: branding-a.com, prefix: /fr }
             branding_B:
+                _defaults:
+                    register: false
                 en_GB: { host: branding-b.com }
+                de_DE: { host: branding-b.de, register: false }
 
 In this section, you must configure your brandings and locales.
 
@@ -110,3 +115,9 @@ use the global variable **site_context**, which returns a
 
     You are currently on {{ site_context.currentBrandingName }}
     Your locale is {{ site_context.currentLocale }}
+
+You can also read options from config with:
+
+.. code-block:: html+jinja
+
+    The option register is {{ site_context.option('register') ? 'enabled': 'not enabled' }}

@@ -187,6 +187,19 @@ class SiteContext
     }
 
     /**
+     * Returns value of an option.
+     *
+     * @param string $name
+     * @param mixed  $default
+     *
+     * @return mixed
+     */
+    public function getOption($name, $default = null)
+    {
+        return $this->getCurrentBranding()->getOption($this->getCurrentLocale(), $name, $default);
+    }
+
+    /**
      * Adds a new branding to the context.
      *
      * @param Branding $branding
