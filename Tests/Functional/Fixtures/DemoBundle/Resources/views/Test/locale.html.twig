@@ -1,2 +1,4 @@
+{{ include('AlexMultisiteDemoBundle:Test:header.html.twig') }}
+
 branding: {{ site_context.currentBrandingName }}, locale: {{ site_context.currentLocale }}
 flags: {{ site_context.option('flag_A') ? 'flag A' : '' }} {{ site_context.option('flag_B') ? 'flag B' : '' }}

@@ -13,7 +13,7 @@ Features
 
 * Multiple routes for each site
 * Configuration per site
-* *UPCOMING* templates per site
+* Templates per site
 
 Installation
 ------------
@@ -69,6 +69,8 @@ Add this section to your *config.yml* file:
 
 In this section, you must configure your brandings and locales.
 
+You can also add extra options, like the **register** option here.
+
 Declare your routes
 -------------------
 
@@ -104,12 +106,25 @@ want a different path for same locale in different sites:
     public function loginAction()
     # ...
 
-Access from template
---------------------
+Override templates
+------------------
 
-If you're in a template and need to access current branding or locale,
-use the global variable **site_context**, which returns a
-``Alex\MultisiteBundle\Branding\SiteContext`` instance:
+If you want to change a template for a specific site, create a similarly named file with branding/locale option in it:
+
+Given your default template is ``AcmeDemoBundle::contact.html.twig``.
+
+You can override it with branding, locale, or both:
+
+- ``AcmeDemoBundle::_branding_locale/contact.html.twig``
+- ``AcmeDemoBundle::_branding_/contact.html.twig``
+- ``AcmeDemoBundle::__locale/contact.html.twig``
+
+Just create the file and it will automatically be loaded in place of the previous one.
+
+Read the site context
+---------------------
+
+**From templates**, use the global variable **site_context**, which returns a ``Alex\MultisiteBundle\Branding\SiteContext`` instance:
 
 .. code-block:: html+jinja
 
@@ -121,3 +136,13 @@ You can also read options from config with:
 .. code-block:: html+jinja
 
     The option register is {{ site_context.option('register') ? 'enabled': 'not enabled' }}
+
+**In your controllers**, use service *site_context*:
+
+.. code-block:: php
+
+    public function indexAction()
+    {
+        $this->get('site_context')->getCurrentLocale();
+        $this->get('site_context')->getOption('register');
+    }
