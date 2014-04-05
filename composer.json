@@ -1,0 +1,13 @@
+{
+    "name": "alexandresalome/multisite-bundle",
+    "description": "A bundle to manage multiple sites with different brandings and locales",
+    "autoload": {
+        "psr-4": {
+            "Alex\\MultisiteBundle\\": "."
+        }
+    },
+    "require": {
+        "symfony/symfony": "~2.4",
+        "sensio/framework-extra-bundle": "~3.0"
+    }
+}

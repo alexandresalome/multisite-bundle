@@ -1,0 +1,7 @@
+Test homepage
+
+<a href="{{ path('test_index') }}">The index page</a>
+<a href="{{ path('test_locale') }}">Default link to locale page</a>
+<a href="{{ path('test_locale', {_locale: 'en_GB'}) }}">Link with locale</a>
+<a href="{{ path('test_locale', {_branding: 'bar'}) }}">Link with branding</a>
+<a href="{{ path('test_locale', {_branding: 'bar', _locale:'de_DE'}) }}">Link with branding</a>
