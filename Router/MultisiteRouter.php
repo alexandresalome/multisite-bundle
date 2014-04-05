@@ -116,8 +116,9 @@ class MultisiteRouter extends Router
         // group by host is a good-enough strategy for most of the cases
         $hosts = array();
         foreach ($routes as $name => $route) {
-            $host = $route->getHost();
-            $hosts[$host][$name] = $route;
+            $branding = $route->getDefault('_branding');
+            $locale   = $route->getDefault('_locale');
+            $hosts[$branding.'__'.$locale][$name] = $route;
         }
 
         return call_user_func_array('array_merge', $hosts);
