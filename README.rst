@@ -1,6 +1,8 @@
 AlexMultisiteBundle - Branding et Internationalization
 ======================================================
 
+`View slides <slides.pdf>`_
+
 This bundle allows you to manage multiple brandings and multiple locales in a Symfony2 application.
 
 **Requirements**:
