@@ -65,7 +65,7 @@ class MultisiteLoader implements \Twig_LoaderInterface
     }
 
     /**
-     * {@inheritdtemplateoc}
+     * {@inheritdoc}
      */
     public function isFresh($name, $time)
     {
