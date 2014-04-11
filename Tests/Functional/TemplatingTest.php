@@ -11,15 +11,15 @@ class TemplatingTest extends WebTestCase
         $client = self::createClient();
 
         // foo - en_GB
-        $crawler = $client->request('GET', 'http://foo.example.org/page-en');
-        $this->assertContains('Foo header', $crawler->text());
+        $client->request('GET', 'http://foo.example.org/page-en');
+        $this->assertContains('Foo header', $client->getResponse()->getContent());
 
         // bar - fr_FR
-        $crawler = $client->request('GET', 'http://bar.example.org/page-fr');
-        $this->assertContains('Default header', $crawler->text());
+        $client->request('GET', 'http://bar.example.org/page-fr');
+        $this->assertContains('Default header', $client->getResponse()->getContent());
 
         // bar - de_DE
-        $crawler = $client->request('GET', 'http://de.bar.example.org/page-de');
-        $this->assertContains('German header', $crawler->text());
+        $client->request('GET', 'http://de.bar.example.org/page-de');
+        $this->assertContains('German header', $client->getResponse()->getContent());
     }
 }
