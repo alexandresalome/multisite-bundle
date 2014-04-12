@@ -37,7 +37,7 @@ class AlexMultisiteExtension extends Extension
      * Adds configured brandings to the site context service.
      *
      * @param ContainerBuilder $container
-     * @param array            $brandings
+     * @param array            $options
      */
     private function addBrandingDefinition(ContainerBuilder $container, array $options)
     {
