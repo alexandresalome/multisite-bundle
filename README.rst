@@ -1,5 +1,5 @@
-AlexMultisiteBundle - Branding et Internationalization
-======================================================
+AlexMultisiteBundle - Branding and Internationalization
+=======================================================
 
 `View slides <slides.pdf>`_
 
