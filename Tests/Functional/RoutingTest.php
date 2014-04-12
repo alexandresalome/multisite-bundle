@@ -19,8 +19,8 @@ class RoutingTest extends WebTestCase
         // verify every site has homepage, because homepage is not
         // multisite
         foreach ($urls as $url) {
-            $crawler = $client->request('GET', $url);
-            $this->assertContains('Test homepage', $crawler->text(), "Test ".$url);
+            $client->request('GET', $url);
+            $this->assertContains('Test homepage', $client->getResponse()->getContent(), "Test ".$url);
         }
     }
 
@@ -29,15 +29,15 @@ class RoutingTest extends WebTestCase
         $client = self::createClient();
 
         // foo - en_GB
-        $crawler = $client->request('GET', 'http://foo.example.org/page-en');
-        $this->assertContains('branding: foo, locale: en_GB', $crawler->text());
+        $client->request('GET', 'http://foo.example.org/page-en');
+        $this->assertContains('branding: foo, locale: en_GB', $client->getResponse()->getContent());
 
         // foo - fr_FR
-        $crawler = $client->request('GET', 'http://foo.example.org/fr/page-fr');
-        $this->assertContains('branding: foo, locale: fr_FR', $crawler->text());
+        $client->request('GET', 'http://foo.example.org/fr/page-fr');
+        $this->assertContains('branding: foo, locale: fr_FR', $client->getResponse()->getContent());
 
         // bar - fr_FR
-        $crawler = $client->request('GET', 'http://bar.example.org/page-fr');
-        $this->assertContains('branding: bar, locale: fr_FR', $crawler->text());
+        $client->request('GET', 'http://bar.example.org/page-fr');
+        $this->assertContains('branding: bar, locale: fr_FR', $client->getResponse()->getContent());
     }
 }

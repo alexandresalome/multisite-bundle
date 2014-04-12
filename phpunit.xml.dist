@@ -14,7 +14,7 @@
     bootstrap                   = "autoload.php" >
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="MultisiteBundle Test Suite">
             <directory>Tests</directory>
         </testsuite>
     </testsuites>
@@ -25,6 +25,7 @@
             <exclude>
                 <directory>Resources</directory>
                 <directory>Tests</directory>
+                <directory>vendor</directory>
             </exclude>
         </whitelist>
     </filter>

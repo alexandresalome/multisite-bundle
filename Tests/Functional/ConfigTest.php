@@ -11,15 +11,15 @@ class ConfigTest extends WebTestCase
         $client = self::createClient();
 
         // foo - en_GB
-        $crawler = $client->request('GET', 'http://foo.example.org/page-en');
-        $this->assertContains('flag A', $crawler->text());
+        $client->request('GET', 'http://foo.example.org/page-en');
+        $this->assertContains('flag A', $client->getResponse()->getContent());
 
         // foo - fr_FR
-        $crawler = $client->request('GET', 'http://foo.example.org/fr/page-fr');
-        $this->assertNotContains('flag A', $crawler->text());
+        $client->request('GET', 'http://foo.example.org/fr/page-fr');
+        $this->assertNotContains('flag A', $client->getResponse()->getContent());
 
         // bar - fr_FR
-        $crawler = $client->request('GET', 'http://bar.example.org/page-fr');
-        $this->assertNotContains('flag B', $crawler->text());
+        $client->request('GET', 'http://bar.example.org/page-fr');
+        $this->assertNotContains('flag B', $client->getResponse()->getContent());
     }
 }
