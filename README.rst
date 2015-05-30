@@ -84,7 +84,19 @@ You can also add extra options, like the **register** option here.
 Declare your routes
 -------------------
 
-You can configure a multisite route in two ways:
+In your controllers, substitute
+
+.. code-block:: php
+
+   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+with
+
+.. code-block:: php
+
+   use Alex\MultisiteBundle\Annotation\Route;
+
+You can then configure a multisite route in two ways:
 
 .. code-block:: php
 
