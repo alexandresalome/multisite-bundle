@@ -1,5 +1,5 @@
 {
-    "name": "alexandresalome/multisite-bundle",
+    "name": "clippingbook/multisite-bundle",
     "description": "A bundle to manage multiple sites with different brandings and locales",
     "autoload": {
         "psr-4": {
