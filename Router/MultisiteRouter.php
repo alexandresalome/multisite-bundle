@@ -88,43 +88,6 @@ class MultisiteRouter extends Router
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getRouteCollection()
-    {
-        $collection    = parent::getRouteCollection();
-        $routes        = $collection->all();
-        $newCollection = new RouteCollection();
-
-        $routes = $this->sortRoutes($routes);
-        foreach ($routes as $name => $route) {
-            $newCollection->add($name, $route);
-        }
-
-        return $newCollection;
-    }
-
-    /**
-     * Sort routes by domain.
-     *
-     * @param Route[] $routes
-     *
-     * @return Route[]
-     */
-    protected function sortRoutes(array $routes)
-    {
-        // group by host is a good-enough strategy for most of the cases
-        $hosts = array();
-        foreach ($routes as $name => $route) {
-            $branding = $route->getDefault('_branding');
-            $locale   = $route->getDefault('_locale');
-            $hosts[$branding.'__'.$locale][$name] = $route;
-        }
-
-        return call_user_func_array('array_merge', $hosts);
-    }
-
-    /**
      * @return SiteContext
      *
      * @throws RuntimeException If no site context is available
