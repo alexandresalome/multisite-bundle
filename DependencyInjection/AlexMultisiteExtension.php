@@ -23,11 +23,8 @@ class AlexMultisiteExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $container->setParameter('alex_multisite.default_branding', $config['default_branding']);
-        $container->setParameter('alex_multisite.default_locale', $config['default_locale']);
 
         $loader->load('site_context.xml');
-        $loader->load('framework_extra.xml');
-        $loader->load('routing.xml');
         $loader->load('twig.xml');
 
         $this->addBrandingDefinition($container, $config['brandings']);

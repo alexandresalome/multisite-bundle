@@ -21,7 +21,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('default_branding')->isRequired()->end()
-                ->scalarNode('default_locale')->isRequired()->end()
                 ->arrayNode('default_config')
                     ->prototype('scalar')->end()
                 ->end()
