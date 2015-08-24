@@ -9,7 +9,11 @@
              <!-- injected by AlexMultisiteExtension -->
             <argument type="collection"></argument>
             <argument>%alex_multisite.default_branding%</argument>
-            <argument>%alex_multisite.default_locale%</argument>
+        </service>
+
+        <service id="site_context_listener" class="Alex\MultisiteBundle\EventListener\SiteContextListener">
+            <argument type="service" id="site_context" />
+            <tag name="kernel.event_listener"  method="onKernelRequest" event="kernel.request" />
         </service>
     </services>
 

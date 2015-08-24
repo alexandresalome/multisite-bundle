@@ -11,7 +11,6 @@ class AlexMultisiteBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new InjectSiteContextPass());
         $container->addCompilerPass(new TwigLoaderPass());
     }
 }
