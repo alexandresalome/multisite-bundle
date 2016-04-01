@@ -70,7 +70,6 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
     public function isFresh($name, $time)
     {
         $templates = $this->getTemplates($name);
-
         foreach ($templates as $template) {
             try {
                 return $this->loader->isFresh($template, $time);
@@ -91,7 +90,6 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
         $posC = strrpos($name, '/');
 
         $b = $this->siteContext->getCurrentBrandingName();
-        $l = $this->siteContext->getCurrentLocale();
 
         if ($posA === false && $posB === false && $posC === false) {
             $prefix = '';
@@ -103,9 +101,7 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
         }
 
         return array(
-            $prefix.'_'.$b.'_'.$l.''.$suffix,
-            $prefix.'_'.$b.'_'.$suffix,
-            $prefix.'__'.$l.''.$suffix,
+            $prefix.'_'.$b.''.$suffix,
             $name
         );
     }

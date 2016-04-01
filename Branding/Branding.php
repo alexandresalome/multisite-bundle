@@ -5,12 +5,8 @@ namespace Alex\MultisiteBundle\Branding;
 /**
  * Represents a branding in MultisiteBundle.
  *
- * $localesConfig is an associative array, indexed by locale:
+ * $config array must has 'hosts' key.
  *
- *     $localesConfig = array(
- *       'fr_FR' => array('host' => 'example.org', 'prefix' => '/fr'),
- *       'en_GB' => array('host' => 'example.org'),
- *     );
  */
 class Branding
 {
@@ -22,18 +18,18 @@ class Branding
     /**
      * @var array
      */
-    private $localesConfig;
+    private $config;
 
     /**
      * Constructor of a branding.
      *
      * @param string $name
-     * @param array  $localesConfig
+     * @param array  $config
      */
-    public function __construct($name, array $localesConfig)
+    public function __construct($name, array $config)
     {
-        $this->name          = $name;
-        $this->localesConfig = $localesConfig;
+        $this->name = $name;
+        $this->config = $config;
     }
 
     /**
@@ -47,61 +43,42 @@ class Branding
     }
 
     /**
-     * Tests if branding has a given locale.
+     * Returns host configured for this branding.
      *
-     * @return boolean
+     * @return array returns an array with hostname.
      */
-    public function hasLocale($locale)
+    public function getHosts()
     {
-        return isset($this->localesConfig[$locale]);
-    }
-
-    /**
-     * Returns host configured for a locale, or null if not found.
-     *
-     * @param string $locale
-     *
-     * @return string|null returns a hostname or null if not found.
-     */
-    public function getHost($locale)
-    {
-        if (!isset($this->localesConfig[$locale]['host'])) {
-            return null;
-        }
-
-        return $this->localesConfig[$locale]['host'];
-    }
-
-    /**
-     * Prefixes the path for a given locale, if a prefix is configured.
-     *
-     * ``prefixPath`` will return the path if no prefix is configured.
-     *
-     * @param string $locale
-     * @param string $path
-     *
-     * @return string
-     */
-    public function prefixPath($locale, $path)
-    {
-        if (isset($this->localesConfig[$locale]['prefix'])) {
-            return $this->localesConfig[$locale]['prefix'].$path;
-        }
-
-        return $path;
+        return isset($this->config['hosts']) ? $this->config['hosts'] : array();
     }
 
     /**
      * Returns value of an option.
      *
-     * @param string $locale
      * @param string $name
      * @param mixed  $default
      *
      * @return mixed
      */
-    public function getOption($locale, $name, $default = null)
+    public function getOption($name, $default = null)
     {
-        return isset($this->localesConfig[$locale][$name]) ? $this->localesConfig[$locale][$name] : $default;
+        return isset($this->config[$name]) ? $this->config[$name] : $default;
+    }
+
+    /**
+     * Returns if a host is configured for this branding
+     *
+     * @param string $host
+     * @return bool
+     */
+    public function hasHost($host)
+    {
+        foreach ($this->getHosts() as $value) {
+            if ($host === $value) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
