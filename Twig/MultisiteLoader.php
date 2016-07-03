@@ -10,7 +10,7 @@ use Alex\MultisiteBundle\Branding\SiteContext;
 class MultisiteLoader extends \Twig_Loader_Filesystem
 {
     /**
-     * @var Twig_Loader_Filesystem
+     * @var \Twig_Loader_Filesystem
      */
     private $loader;
 
@@ -22,10 +22,12 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
     /**
      * Constructs the loader.
      *
-     * @param Twig_LoaderInterface $loader a twig loader
+     * @param \Twig_LoaderInterface $loader a twig loader
      */
     public function __construct(\Twig_LoaderInterface $loader, SiteContext $siteContext)
     {
+        parent::__construct();
+
         $this->loader      = $loader;
         $this->siteContext = $siteContext;
     }
@@ -46,6 +48,15 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
 
         throw new \Twig_Error_Loader(sprintf("Template \"%s\" not found. Tried the following:\n%s", $name, implode("\n", $templates)));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function findTemplate($name)
+    {
+        return $this->loader->findTemplate($name);
+    }
+
 
     /**
      * {@inheritdoc}
