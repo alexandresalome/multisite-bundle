@@ -4,7 +4,7 @@ namespace Alex\MultisiteBundle\Twig;
 
 use Alex\MultisiteBundle\Branding\SiteContext;
 
-class MultisiteExtension extends \Twig_Extension
+class MultisiteExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $siteContext;
 

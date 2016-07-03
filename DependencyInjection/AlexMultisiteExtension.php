@@ -27,7 +27,6 @@ class AlexMultisiteExtension extends Extension
 
         $loader->load('site_context.xml');
         $loader->load('framework_extra.xml');
-        $loader->load('routing.xml');
         $loader->load('twig.xml');
 
         $this->addBrandingDefinition($container, $config['brandings']);
