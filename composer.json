@@ -1,6 +1,7 @@
 {
     "name": "alexandresalome/multisite-bundle",
     "description": "A bundle to manage multiple sites with different brandings and locales",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Alex\\MultisiteBundle\\": "."
