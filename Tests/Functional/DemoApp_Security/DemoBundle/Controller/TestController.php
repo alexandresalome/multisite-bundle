@@ -6,7 +6,6 @@ use Alex\MultisiteBundle\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 
 class TestController extends Controller
 {
@@ -34,11 +33,11 @@ class TestController extends Controller
         $session = $request->getSession();
         $error = null;
 
-        if ($request->attributes->has(Security::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(Security::AUTHENTICATION_ERROR);
-        } elseif ($session !== null && $session->has(Security::AUTHENTICATION_ERROR)) {
-            $error = $session->get(Security::AUTHENTICATION_ERROR);
-            $session->remove(Security::AUTHENTICATION_ERROR);
+        if ($request->attributes->has('_security.last_error')) {
+            $error = $request->attributes->get('_security.last_error');
+        } elseif ($session !== null && $session->has('_security.last_error')) {
+            $error = $session->get('_security.last_error');
+            $session->remove('_security.last_error');
         }
 
         return array('error' => $error);
