@@ -20,6 +20,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->booleanNode('sort_routes')->defaultTrue()->end()
                 ->scalarNode('default_branding')->isRequired()->end()
                 ->scalarNode('default_locale')->isRequired()->end()
                 ->arrayNode('default_config')

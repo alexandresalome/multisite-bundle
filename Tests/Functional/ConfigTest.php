@@ -22,4 +22,12 @@ class ConfigTest extends WebTestCase
         $client->request('GET', 'http://bar.example.org/page-fr');
         $this->assertNotContains('flag B', $client->getResponse()->getContent());
     }
+
+    public function testNoSort()
+    {
+        $client = self::createClient('DemoApp_NoSort');
+
+        $client->request('GET', '/bar');
+        $this->assertContains('Route A', $client->getResponse()->getContent());
+    }
 }

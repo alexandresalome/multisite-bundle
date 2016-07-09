@@ -1,0 +1,15 @@
+framework:
+    secret: foo
+    router:
+        resource: "%kernel.root_dir%/routing.yml"
+    templating: { engine: twig }
+
+alex_multisite:
+    sort_routes: false
+    default_branding: foo
+    default_locale:   fr_FR
+    brandings:
+        foo:
+            en_GB: {}
+        bar:
+            fr_FR: {}

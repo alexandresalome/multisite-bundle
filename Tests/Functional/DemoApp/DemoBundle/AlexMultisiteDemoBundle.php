@@ -1,6 +1,6 @@
 <?php
 
-namespace Alex\MultisiteBundle\Tests\Functional\Fixtures\DemoBundle;
+namespace Alex\MultisiteBundle\Tests\Functional\DemoApp\DemoBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

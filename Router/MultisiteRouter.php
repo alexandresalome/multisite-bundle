@@ -21,6 +21,20 @@ class MultisiteRouter extends Router
     private $siteContext;
 
     /**
+     * @var boolean
+     */
+    private $sortRoutes = true;
+
+    /**
+     * Defines if router should sort routes by local and domain, to optimize
+     * matching performance.
+     */
+    public function setSortRoutes($value = true)
+    {
+        $this->sortRoutes = $value;
+    }
+
+    /**
      * Changes the site context.
      *
      * @param SiteContext $siteContext
@@ -113,6 +127,10 @@ class MultisiteRouter extends Router
      */
     protected function sortRoutes(array $routes)
     {
+        if (!$this->sortRoutes) {
+            return $routes;
+        }
+
         // group by host is a good-enough strategy for most of the cases
         $hosts = array();
         foreach ($routes as $name => $route) {

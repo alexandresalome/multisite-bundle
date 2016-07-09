@@ -105,15 +105,15 @@ want a different path for same locale in different sites:
 
 ```php
 /**
- + @Route(name="login", paths={
- +   "branding_A"={
- +     "fr_FR"="/connexion-on-A",
- +     "en_GB"="/login-on-A",
- +   },
- +   "branding_B"={
- +     "en_GB"="/login-on-B",
- +   },
- + })
+ * @Route(name="login", paths={
+ *   "branding_A"={
+ *     "fr_FR"="/connexion-on-A",
+ *     "en_GB"="/login-on-A",
+ *   },
+ *   "branding_B"={
+ *     "en_GB"="/login-on-B",
+ *   },
+ * })
  */
 public function loginAction()
 # ...
@@ -156,4 +156,14 @@ public function indexAction()
     $this->get('site_context')->getCurrentLocale();
     $this->get('site_context')->getOption('register');
 }
+```
+
+## Disable route sorting
+
+You might want to rely on natural order of routes. If you're in this case, you can disable the optimization by providing the **sort_route** option:
+
+```yaml
+alex_multisite:
+    sort_routes: false
+    # ...
 ```

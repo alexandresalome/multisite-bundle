@@ -1,6 +1,6 @@
 <?php
 
-namespace Alex\MultisiteBundle\Tests\Functional\Fixtures\DemoBundle\Controller;
+namespace Alex\MultisiteBundle\Tests\Functional\DemoApp\DemoBundle\Controller;
 
 use Alex\MultisiteBundle\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
