@@ -1,0 +1,9 @@
+<h2>Login form</h2>
+
+<form action="{{ path('login-check') }}" method="POST">
+    <p>Username: <input type="text" name="_username" id="_username" /></p>
+    <p>Password: <input type="password" name="_password" id="_password" /></p>
+    <p><button>Submit</button></p>
+</form>
+
+<p><a href="{{ path('homepage') }}">Go back to homepage</a></p>

@@ -167,3 +167,12 @@ alex_multisite:
     sort_routes: false
     # ...
 ```
+
+## Security
+
+You can combine this bundle with Symfony's **SecurityBundle**, and use this bundle for your routes for login form page.
+
+But, you must **not** use the multisite feature for the following routes:
+
+* login-check
+* logout

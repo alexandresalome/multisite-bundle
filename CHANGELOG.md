@@ -2,6 +2,7 @@
 
 ## 0.2.0 (under development)
 
+* [feature] #7 - Security notice in documentation (Alexandre Salomé)
 * [feature] #18 - Support for Symfony3 (Sander Borgman)
 * [feature] #12 - Option to disable route sorting (Alexandre Salomé)
 

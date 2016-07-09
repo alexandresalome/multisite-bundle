@@ -1,0 +1,39 @@
+framework:
+    secret: foo
+    router:
+        resource: "%kernel.root_dir%/routing.yml"
+    templating: { engine: twig }
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+
+security:
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:
+                        password: user
+                        roles: 'ROLE_USER'
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+    firewalls:
+        default:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login-check
+                default_target_path: homepage
+            logout:
+                path: logout
+
+alex_multisite:
+    default_branding: foo
+    default_locale:   fr_FR
+    brandings:
+        foo:
+            en_GB: { prefix: /foo-en }
+            fr_FR: { prefix: /foo-fr }
+        bar:
+            fr_FR: { prefix: /bar-fr }
+            en_GB: { prefix: /bar-en }

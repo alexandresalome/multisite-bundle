@@ -1,13 +1,27 @@
 <?php
 
-namespace Alex\MultisiteBundle\Tests\Functional\DemoApp;
+namespace Alex\MultisiteBundle\Tests\Functional\DemoApp_Security;
 
-use Alex\MultisiteBundle\Tests\Functional\DemoApp\DemoBundle\AlexMultisiteDemoBundle;
+use Alex\MultisiteBundle\Tests\Functional\DemoApp_Security\DemoBundle\AlexMultisiteDemoBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
+    private $dir;
+
+    public function getDir()
+    {
+        if ($this->dir) {
+            return $this->dir;
+        }
+
+        $this->dir = sys_get_temp_dir().'/test_ms_security_'.md5(uniqid().microtime());
+        mkdir($this->dir, 0777, true);
+
+        return $this->dir;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -16,9 +30,10 @@ class AppKernel extends Kernel
         return array(
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
+            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new \Alex\MultisiteBundle\AlexMultisiteBundle(),
-            new \Alex\MultisiteBundle\Tests\Functional\DemoApp\DemoBundle\AlexMultisiteDemoBundle(),
+            new \Alex\MultisiteBundle\Tests\Functional\DemoApp_Security\DemoBundle\AlexMultisiteDemoBundle(),
         );
     }
 
@@ -32,21 +47,11 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        $dir = sys_get_temp_dir().'/test_ms_'.md5(uniqid().microtime());
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
+        return $this->getDir();
     }
 
     public function getLogDir()
     {
-        $dir = sys_get_temp_dir().'/test_ms_log_'.md5(uniqid().microtime());
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
+        return $this->getDir();
     }
 }
