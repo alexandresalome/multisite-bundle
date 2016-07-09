@@ -8,6 +8,7 @@
 * Pascal Borreli
 * Carlos Granados
 * Sébastien Lévêque
+* Sander Borgman
 
 ## Command used to generate:
 

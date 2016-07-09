@@ -1,5 +1,9 @@
 # CHANGLOG
 
+## 0.2.0 (under development)
+
+* [feature] #18 - Support for Symfony3 (Sander Borgman)
+
 ## 0.1.1 (01/04/2016)
 
 * [bug] #14 - Replace RuntimeException per Twig_Error_Loader (Sébastien Lévêque)
