@@ -1,6 +1,6 @@
 # CHANGLOG
 
-## 0.2.0 (under development)
+## 0.2.0 (09/07/2014)
 
 * [feature] #7 - Security notice in documentation (Alexandre Salomé)
 * [feature] #18 - Support for Symfony3 (Sander Borgman)
