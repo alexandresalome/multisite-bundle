@@ -158,6 +158,16 @@ class SiteContext
         return $result;
     }
 
+    public function getBrandingsWithHost($host) {
+        $locale = $this->getCurrentLocale();
+        foreach($this->brandings as $branding) {
+            if ($branding->getHost($locale) == $host) {
+                return $branding;
+            }
+        }
+        return null;
+    }
+
     /**
      * Converts an array used in annotation to an associative array branding/locale.
      *

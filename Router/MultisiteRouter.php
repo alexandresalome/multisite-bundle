@@ -55,7 +55,12 @@ class MultisiteRouter extends Router
     {
         $match = parent::matchRequest($request);
         $this->setMatchContext($match);
+        $host = $request->getHost();
 
+        $branding = $this->getSiteContext()->getBrandingsWithHost($host);
+        if ($branding != null) {
+            $this->siteContext->setCurrentBranding($branding);
+        }
         return $match;
     }
 
