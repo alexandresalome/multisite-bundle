@@ -4,14 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="twig.extension.multisite.class">Alex\MultisiteBundle\Twig\MultisiteExtension</parameter>
+        <parameter key="twig.loader.multisite.class">Alex\MultisiteBundle\Twig\MultisiteLoader</parameter>
+    </parameters>
+
     <services>
-        <service id="twig.extension.multisite" class="Alex\MultisiteBundle\Twig\MultisiteExtension" public="false">
+        <service id="twig.extension.multisite" class="%twig.extension.multisite.class%" public="false">
             <argument type="service" id="site_context" />
 
             <tag name="twig.extension" />
         </service>
 
-        <service id="twig.loader.multisite" class="Alex\MultisiteBundle\Twig\MultisiteLoader" public="false">
+        <service id="twig.loader.multisite" class="%twig.loader.multisite.class%" public="false">
             <argument type="service" id="twig.loader.previous" />
             <argument type="service" id="site_context" />
         </service>

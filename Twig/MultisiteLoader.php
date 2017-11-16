@@ -12,12 +12,12 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
     /**
      * @var \Twig_Loader_Filesystem
      */
-    private $loader;
+    protected $loader;
 
     /**
      * @var SiteContext
      */
-    private $siteContext;
+    protected $siteContext;
 
     /**
      * Constructs the loader.
@@ -95,7 +95,7 @@ class MultisiteLoader extends \Twig_Loader_Filesystem
     /**
      * {@inheritdoc}
      */
-    private function getTemplates($name)
+    protected function getTemplates($name)
     {
         $posA = strrpos($name, ':');
         $posB = strrpos($name, '/');

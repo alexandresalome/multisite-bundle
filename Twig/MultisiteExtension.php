@@ -6,7 +6,7 @@ use Alex\MultisiteBundle\Branding\SiteContext;
 
 class MultisiteExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
-    private $siteContext;
+    protected $siteContext;
 
     public function __construct(SiteContext $siteContext)
     {

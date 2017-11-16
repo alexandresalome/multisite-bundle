@@ -12,27 +12,27 @@ class SiteContext
     /**
      * @var Branding[]
      */
-    private $brandings = array();
+    protected $brandings = array();
 
     /**
      * @var string
      */
-    private $defaultBrandingName;
+    protected $defaultBrandingName;
 
     /**
      * @var string
      */
-    private $defaultLocale;
+    protected $defaultLocale;
 
     /**
      * @var Branding
      */
-    private $currentBranding;
+    protected $currentBranding;
 
     /**
      * @var string
      */
-    private $currentLocale;
+    protected $currentLocale;
 
     /**
      * Creates a new instance.
@@ -161,6 +161,8 @@ class SiteContext
     /**
      * Converts an array used in annotation to an associative array branding/locale.
      *
+     * @param array $paths
+     *
      * @return array
      */
     public function normalizePaths(array $paths)
@@ -206,7 +208,7 @@ class SiteContext
      *
      * @return SiteContext
      */
-    private function addBranding(Branding $branding)
+    protected function addBranding(Branding $branding)
     {
         $this->brandings[] = $branding;
 

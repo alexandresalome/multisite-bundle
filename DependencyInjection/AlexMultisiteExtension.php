@@ -30,7 +30,7 @@ class AlexMultisiteExtension extends Extension
         $loader->load('framework_extra.xml');
         $loader->load('twig.xml');
 
-        $this->addBrandingDefinition($container, $config['brandings']);
+        $this->addBrandingDefinition($container, $config['brandings'], $config['branding_class']);
     }
 
     /**
@@ -38,8 +38,9 @@ class AlexMultisiteExtension extends Extension
      *
      * @param ContainerBuilder $container
      * @param array            $options
+     * @param string           $brandingClass
      */
-    private function addBrandingDefinition(ContainerBuilder $container, array $options)
+    private function addBrandingDefinition(ContainerBuilder $container, array $options, $brandingClass)
     {
         $brandings = array();
 
@@ -64,7 +65,7 @@ class AlexMultisiteExtension extends Extension
             }
 
             $brandings[] = new Definition(
-                'Alex\MultisiteBundle\Branding\Branding',
+                $brandingClass,
                 array($name, $arg)
             );
         }
