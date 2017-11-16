@@ -17,12 +17,12 @@ class Branding
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var array
      */
-    private $localesConfig;
+    protected $localesConfig;
 
     /**
      * Constructor of a branding.
@@ -48,6 +48,8 @@ class Branding
 
     /**
      * Tests if branding has a given locale.
+     *
+     * @param string $locale
      *
      * @return boolean
      */
